@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="ERROR" monitorInterval="30">
+    <Properties>
+        <Property name="LOG_HOME">./logs</Property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <!--<PatternLayout-->
+            <!--pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %logger{36}:%L [%M] - %msg%n"/>-->
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}{FATAL=Bright Red, ERROR=Bright Magenta, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White} %logger{36}:%L [%M] - %highlight{%msg%n}"/>
+        </Console>
+
+        <RollingFile name="RollingFileInfo" fileName="${LOG_HOME}/disruptor-demo.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/disruptor-demo-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="INFO" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}{FATAL=Bright Red, ERROR=Bright Magenta, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White} %logger{36}:%L [%M] - %highlight{%msg%n}"/>
+            <Policies>
+                <!-- log4j2的按天分日志文件 : disruptor-demo-%d{yyyy-MM-dd}.log -->
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+
+        <RollingFile name="RollingFileError"
+                     fileName="${LOG_HOME}/disruptor-demo-error.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/disruptor-demo-error-%d{yyyy-MM-dd}.log">
+            <ThresholdFilter level="ERROR" onMatch="ACCEPT"
+                             onMismatch="DENY"/>
+            <PatternLayout
+                    pattern="%d{yyyy-MM-dd HH:mm:ss.SSS} %highlight{%-5level}{FATAL=Bright Red, ERROR=Bright Magenta, WARN=Bright Yellow, INFO=Bright Green, DEBUG=Bright Cyan, TRACE=Bright White} %logger{36}:%L [%M] - %highlight{%msg%n}"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval="1"
+                                           modulate="true"/>
+                <SizeBasedTriggeringPolicy size="100 MB"/>
+            </Policies>
+            <DefaultRolloverStrategy max="100"/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <!--<logger name="org.elasticsearch" level="ERROR"/>-->
+        <!--<logger name="org.mongodb" level="ERROR"/>-->
+
+        <root level="all">
+            <appenderRef ref="Console"/>
+            <appenderRef ref="RollingFileInfo"/>
+            <appenderRef ref="RollingFileError"/>
+        </root>
+    </Loggers>
+</Configuration>
