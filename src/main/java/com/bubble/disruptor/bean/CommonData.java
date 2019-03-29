@@ -1,4 +1,4 @@
-package com.bubble.bean;
+package com.bubble.disruptor.bean;
 
 /**
  * 支持泛型的基本类

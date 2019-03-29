@@ -1,6 +1,6 @@
-package com.bubble.disruptor;
+package com.bubble.disruptor.service;
 
-import com.bubble.bean.DataBean;
+import com.bubble.disruptor.bean.DataBean;
 import com.lmax.disruptor.WorkHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

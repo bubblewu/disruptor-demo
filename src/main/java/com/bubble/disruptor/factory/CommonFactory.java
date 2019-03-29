@@ -1,6 +1,6 @@
 package com.bubble.disruptor.factory;
 
-import com.bubble.bean.CommonData;
+import com.bubble.disruptor.bean.CommonData;
 import com.lmax.disruptor.EventFactory;
 
 /**

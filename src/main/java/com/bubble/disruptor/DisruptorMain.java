@@ -1,7 +1,9 @@
 package com.bubble.disruptor;
 
-import com.bubble.bean.DataBean;
+import com.bubble.disruptor.bean.DataBean;
 import com.bubble.disruptor.factory.DataFactory;
+import com.bubble.disruptor.service.Consumer;
+import com.bubble.disruptor.service.Producer;
 import com.lmax.disruptor.BlockingWaitStrategy;
 import com.lmax.disruptor.RingBuffer;
 import com.lmax.disruptor.dsl.Disruptor;
@@ -25,7 +27,7 @@ public class DisruptorMain {
     private static final Logger LOGGER = LoggerFactory.getLogger(DisruptorMain.class);
 
     public static void main(String[] args) throws InterruptedException {
-        Instant beigin = Instant.now();
+        Instant begin = Instant.now();
         DataFactory factory = new DataFactory();
         int bufferSize = 1024 * 1024; // 缓冲区的大小，必须为2的整数次幂。
         Disruptor<DataBean> disruptor = new Disruptor<>(factory,
@@ -56,7 +58,7 @@ public class DisruptorMain {
         }
         disruptor.shutdown(); //关闭 disruptor，方法会堵塞，直至所有的事件都得到处理
 
-        LOGGER.info("job done, total costs {} ms", Duration.between(beigin, Instant.now()).toMillis());
+        LOGGER.info("job done, total costs {} ms", Duration.between(begin, Instant.now()).toMillis());
     }
 
 }

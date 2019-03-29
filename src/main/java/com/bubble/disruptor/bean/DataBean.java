@@ -1,4 +1,4 @@
-package com.bubble.bean;
+package com.bubble.disruptor.bean;
 
 import java.io.Serializable;
 
