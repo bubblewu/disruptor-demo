@@ -1,23 +1,34 @@
 <assembly>
+    <!--id 标识符，添加到生成文件名称的后缀符-->
     <id>genTar</id>
-    <formats>
+    <!--maven-assembly-plugin 支持的打包格式有zip、tar、tar.gz (or tgz)、tar.bz2 (or tbz2)、jar、dir、war，可以同时指定多个打包格式-->
+    <formats> <!--打包的文件格式 -->
         <format>tar.gz</format>
     </formats>
+    <!--<id>genDependenciesJar</id>-->
+    <!--<formats>-->
+    <!--<format>jar</format>-->
+    <!--</formats>-->
+
+    <!--当includeBaseDirectory为true时候，prefix为artifact的finalName,如果为false,则设置为"",而这个finalName就是分发包的最外层-->
+    <!--在最终归档文件中包含一个基本目录。例如，如果您正在创建一个名为“your-app”的程序集，将includeBaseDirectory设置为true将创建一个包含该基本目录的存档。如果将此选项设置为false，则创建的存档将解压缩其内容到当前目录。-->
+    <!--默认值为:true。-->
     <includeBaseDirectory>false</includeBaseDirectory>
 
     <dependencySets>
         <dependencySet>
             <!--依赖包-->
+            <!--指定包依赖目录，该目录是相对于根目录-->
             <outputDirectory>/lib</outputDirectory>
             <scope>runtime</scope>
-            <excludes>
+            <excludes> <!--排除依赖-->
                 <exclude>${project.groupId}:${project.artifactId}</exclude>
             </excludes>
         </dependencySet>
         <dependencySet>
             <!--工程jar包-->
             <outputDirectory>/</outputDirectory>
-            <includes>
+            <includes> <!--包含依赖-->
                 <include>${project.groupId}:${project.artifactId}</include>
             </includes>
         </dependencySet>

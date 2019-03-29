@@ -115,18 +115,20 @@
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
                 <configuration>
-                    <appendAssemblyId>false</appendAssemblyId>
-                    <descriptors>
+
+                    <descriptors> <!--描述文件路径-->
                         <descriptor>src/main/resources/assembly.xml</descriptor>
                     </descriptors>
-                    <outputDirectory>${project.build.directory}/</outputDirectory>
+                    <outputDirectory>${project.build.directory}/</outputDirectory> <!-- 打包后输出的路径 -->
+                    <attach>false</attach> <!--这样配置后，mvn deploy不会把assembly打的zip包上传到nexus-->
+                    <appendAssemblyId>false</appendAssemblyId> <!--appendAssemblyId属性控制是否在生成的打包文件的文件名中包含assembly id-->
                 </configuration>
                 <executions>
                     <execution>
-                        <id>make-assembly</id>
-                        <phase>package</phase>
+                        <id>make-assembly</id> <!--名字任意 -->
+                        <phase>package</phase> <!-- 绑定到package生命周期阶段上 -->
                         <goals>
-                            <goal>single</goal>
+                            <goal>single</goal> <!-- 只运行一次 -->
                         </goals>
                     </execution>
                 </executions>
