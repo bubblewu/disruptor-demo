@@ -25,7 +25,7 @@ public class CommonConsumer implements WorkHandler<CommonData> {
 
     @SuppressWarnings("unchecked")
     @Override
-    public void onEvent(CommonData event) throws Exception {
+    public void onEvent(CommonData event) {
         long uid = event.getUid();
         LOGGER.info("{} start rec for user {}", Thread.currentThread().getName(), uid);
 

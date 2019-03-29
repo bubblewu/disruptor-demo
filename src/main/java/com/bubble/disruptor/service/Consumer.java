@@ -20,10 +20,9 @@ public class Consumer implements WorkHandler<DataBean> {
      * 所以，这里只需要简单的进行数据处理即可。
      *
      * @param event 数据
-     * @throws Exception 异常
      */
     @Override
-    public void onEvent(DataBean event) throws Exception {
+    public void onEvent(DataBean event) {
         long result = event.getValue() * event.getValue(); // 求整数的平方
         LOGGER.info("thread name: {}, thread id: {}, data: {}, result: {}",
                 Thread.currentThread().getName(),

@@ -30,7 +30,7 @@ public class CommonMain {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommonMain.class);
 
     @SuppressWarnings("unchecked")
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) {
         Instant begin = Instant.now();
         CommonFactory factory = new CommonFactory();
         int bufferSize = 1024 * 1024; // 缓冲区的大小，必须为2的整数次幂。
