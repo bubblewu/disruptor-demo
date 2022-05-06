@@ -19,7 +19,7 @@
         <junit.version>4.12</junit.version>
         <mockito.version>2.19.1</mockito.version>
         <slf4j.version>1.7.25</slf4j.version>
-        <lo4j2.version>2.11.0</lo4j2.version>
+        <lo4j2.version>2.17.1</lo4j2.version>
         <disruptor.version>3.4.2</disruptor.version>
     </properties>
 
